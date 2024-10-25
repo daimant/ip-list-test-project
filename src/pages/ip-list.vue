@@ -46,11 +46,11 @@ export default defineComponent({
       preparedIpForCheck.forEach((ip, i: number) => {
         if (ip.replace(/[^.]/gi, '').length !== 3 || ip.replace(/[0-9,.]/gi, '').length !== 0 || !ip || ip === ' ' || ip === '\n') {
           errorsIp.value.push(ip)
-          preparedIpForCheck.splice(i, 1)
+          preparedIpForCheck.splice(i, 1, '')
         }
       })
 
-      preparedIpForCheck.forEach(async (ip) => {
+      preparedIpForCheck.filter(el => el).forEach(async (ip) => {
         const { data } = await axios.get(`http://ip-api.com/json/${ip}`)
 
         if (data.status === 'success') ipStore.addIP(data)
