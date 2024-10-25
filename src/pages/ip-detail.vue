@@ -91,7 +91,14 @@ export default defineComponent({
             <th>
               <div class='flex'>
                 <span class='flex mr-2'>{item.value?.query}</span>
-                <span class='flex pointer'><Icons.copy/></span>
+                <span
+                  class='flex pointer'
+                  onClick={() => {
+                    if (item.value?.query) navigator.clipboard.writeText(item.value.query)
+                  }}
+                >
+                  <Icons.copy/>
+                </span>
               </div>
             </th>
           </tr>
