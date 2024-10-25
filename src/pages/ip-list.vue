@@ -7,12 +7,9 @@ import LineLoader from '../components/line-loader.vue'
 import Icons from '../assets/icons/icons'
 import { useIpStore } from '@/pages/store'
 
-const countryCodeToFlag = (countryCode: string) => {
-  if (!countryCode || countryCode.length !== 2 || !/^[a-zA-Z]+$/.test(countryCode)) {
-    return '🏳️'
-  }
-  return Array.from(countryCode.toUpperCase()).map(letter => String.fromCodePoint(letter.charCodeAt(0) + 127397)).join('')
-}
+const countryCodeToFlag = (countryCode: string) => (!countryCode || countryCode.length !== 2 || !/^[a-zA-Z]+$/.test(countryCode))
+  ? '🏳️'
+  : Array.from(countryCode.toUpperCase()).map(letter => String.fromCodePoint(letter.charCodeAt(0) + 127397)).join('')
 
 export default defineComponent({
   setup() {
@@ -181,7 +178,7 @@ export default defineComponent({
     return () => (
       <div class='layer-layout'>
         <InputBlock/>
-        {ipStore.getList.length !== 0 && <TableBlock/>}
+        {ipStore.cloneIpList.length !== 0 && <TableBlock/>}
       </div>
     )
   }

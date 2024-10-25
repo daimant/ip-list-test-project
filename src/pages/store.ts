@@ -19,13 +19,15 @@ export type IPType = {
 }
 
 export const useIpStore = defineStore('ip', {
-  state: (): { ipList: IPType[] } => ({
+  state: (): { ipList: IPType[], cloneIpList: IPType[] } => ({
     ipList: [],
+    cloneIpList: [],
   }),
 
   actions: {
     addIP(item: IPType) {
       this.ipList.push(item)
+      this.cloneIpList = this.ipList
     },
     removeIP(index: number, count: number) {
       this.ipList.splice(index, count)
@@ -37,7 +39,7 @@ export const useIpStore = defineStore('ip', {
       this.ipList = this.ipList.sort((a, b) => a[param] < b[param] ? -1 : 1)
     },
     search(search: string) {
-      // this.ipList = this.ipList
+      this.ipList = this.cloneIpList.filter(ip => ip.query.includes(search) || ip.country.includes(search) || ip.region.includes(search))
     },
   },
 
