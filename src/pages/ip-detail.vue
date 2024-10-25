@@ -184,6 +184,7 @@ export default defineComponent({
     background-color: #F7F9FB
 
   th, td
+    font-weight: 400
     min-width: 164px
     padding: 16px
 
