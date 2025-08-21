@@ -51,7 +51,7 @@ export default defineComponent({
       })
 
       preparedIpForCheck.filter(el => el).forEach(async (ip) => {
-        const { data } = await axios.get(`http://ip-api.com/json/${ip}`)
+        const { data } = await axios.get(`https://cors-anywhere.herokuapp.com/http://ip-api.com/json/${ip}`)
 
         if (data.status === 'success') ipStore.addIP(data)
         else errorsIp.value.push(ip)
